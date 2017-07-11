@@ -16,15 +16,18 @@ let instance = axios.create({
   }
 })
 
-function createBarryClass($) {
+function createBarryClass(obj) {
+  var $ = cheerio(obj);
 
-  return {
+  var barry = {
     id: $.data('classid'),
-    // reserveUrl: div.querySelector('a').href,
+    reserveUrl: $.children('a').attr('href')
   //   time: div.querySelector('.scheduleTime').innerText,
   //   isAvailable: !div.classlist.contains('classfull')
-}
+  }
 
+
+  return barry;
 }
 
 var DESIRED_BOOKING_TIME = '09:30';
@@ -58,7 +61,6 @@ function getFormattedMonth(data) {
 instance.get(bookingsPage).then(response => {
   let dateSelector = getCorrectDate();
   let $ = cheerio.load(response.data);
-  let items = $('.reservelist div:first-child > .scheduleBlock');
-
-  console.log(items)
+  let items = Array.from($('.reservelist div:first-child > .scheduleBlock'))
+    .map(createBarryClass);
 });
