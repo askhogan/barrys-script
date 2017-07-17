@@ -1,8 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-let cookieString = 'ZING1=EE970A3F%2DBECE%2D6E89%2D0F04893A5B385134; COOKIETEST=Accepts%20cookies; SITE=17; REMEMBERME=F3AD6FF9%2D9B5B%2DA2FA%2D6F80B82A5AF178DD'
-
+let cookieString = process.env.BARRYS_COOKIE_STRING;
 let accountPage = '/reserve/index.cfm?action=Account.info';
 
 const bookingsPage = '/reserve/index.cfm?action=Reserve.chooseClass&site=17&wk=1'
@@ -26,7 +25,7 @@ function createBarryClass(obj) {
   //   isAvailable: !div.classlist.contains('classfull')
   }
 
-
+  console.log('called')
   return barry;
 }
 
