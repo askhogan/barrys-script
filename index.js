@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const config = require('./config.json');
-let cookieString = process.env.BARRYS_COOKIE_STRING;
+let cookieString = process.env.BARRYS_COOKIE_STRING || config.cookieString;
 let accountPage = '/reserve/index.cfm?action=Account.ingit adfo';
 const bookingsPage = '/reserve/index.cfm?action=Reserve.chooseClass&site=17&wk=1';
 
